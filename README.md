@@ -82,7 +82,7 @@
 
 ---
 
-## Package Management (Debian/Ubuntu Specific):
+## Package Management (Debian Specific):
 
 - **sudo apt update**: update archives.
 - **sudo apt upgrade**: update packages.
@@ -117,12 +117,38 @@ In Arch-based distros, pacman is used instead of apt.
 - yay -Rns [package] → Remove an AUR package and its dependencies.
 
 - sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist →  Managing mirrors (faster downloads)
+
+## Package Management (Fedora-Specific):
+Fedora uses dnf (previously yum), the default package manager.
+
+- sudo dnf update → Update all packages (similar to apt update && apt upgrade).
+- sudo dnf install [package] → Install a package.
+- sudo dnf remove [package] → Remove a package.
+- sudo dnf search [package] → Search for available packages in repos.
+- sudo dnf list installed → List all installed packages.
+- sudo dnf upgrade → Upgrade all installed packages.
+- sudo dnf autoremove → Remove unneeded dependencies.
+- sudo dnf clean all → Clean package cache to free space.
+- sudo dnf groupinfo [group-name]: View information about a specific software group.
+- sudo dnf update --refresh: Force an update of all repositories and refresh the metadata.
+- sudo dnf upgrade --refresh: Refresh the system and resolve any potential issues with outdated metadata.
+- sudo dnf install dnf-plugin-system-upgrade: Install the plugin to upgrade Fedora versions (useful for upgrading to a new Fedora release).
+- sudo dnf system-upgrade download --releasever=[version]: Upgrade Fedora to a specific version (e.g., sudo dnf system-upgrade download --releasever=36).
+- sudo dnf reinstall [package]: Reinstall a package to fix issues.
+- sudo dnf history: Shows a list of all past package transactions (installations, upgrades, removals, etc.)
+- sudo dnf history info [transaction-id]: View detailed information about a specific transaction. This will show you which packages were installed, removed, or upgraded in that particular transaction.
+- sudo dnf history undo [transaction-id]: Rollback (undo) a specific transaction, which can be useful if you installed or removed a package that caused issues on your system.
+
+
+
+
+
 ---
 
 ## Errors and Troubleshooting:
 
 - **kill audioprocess -   pulseaudio -k**: For audio driver/device  not detecting...and then run pulseaudio again.
-- **sudo service network-manager restart**: restart the network manager service.(systemctl restart NetworkManager for arch-based)
+- **sudo service network-manager restart**: restart the network manager service.(systemctl restart NetworkManager for arch or fedora)
 - **sudo lshw -C network**: Check hardware details for network interfaces (helps in identifying network issues).
 - **sudo systemctl restart [service]**: Restart a system service if it is not functioning
 - **sudo systemctl restart gdm**: Restart the GDM display manager if graphical interface fails to load.(Other distros may use sddm, lightdm, or xdm.) 
